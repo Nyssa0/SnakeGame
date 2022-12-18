@@ -1,5 +1,4 @@
 import random
-
 import numpy
 import pygame
 
@@ -7,12 +6,10 @@ import pygame
 class Fruit:
 
     def __init__(self, x, y, img):
-        # fruit position
-        DEFAULT_IMAGE_SIZE = (10, 10)
-
-        # Scale the image to your needed size
+        image_size = (10, 10)
         self.img = img
-        self.img = pygame.transform.scale(self.img, DEFAULT_IMAGE_SIZE)
+        # Changing the size of the image
+        self.img = pygame.transform.scale(self.img, image_size)
 
         self.img.convert()
 

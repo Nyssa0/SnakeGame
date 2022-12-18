@@ -1,6 +1,5 @@
 # importing libraries
 import pygame
-import numpy
 
 from ColorClass import Color
 from FruitClass import Fruit
@@ -14,8 +13,9 @@ snake = Snake()
 screen = Screen()
 color = Color()
 player = Player()
+score = Score()
+rules = Rules()
 
-# Initialising pygame
 pygame.init()
 
 # Initialise game window
@@ -25,6 +25,7 @@ game_window = pygame.display.set_mode((screen.x, screen.y))
 # FPS (frames per second) controller
 fps = pygame.time.Clock()
 
+# Creating the fruits and giving them an image
 bonus = Fruit(screen.x, screen.y, pygame.image.load('images/bonus.png'))
 bonus.new_position(screen.x, screen.y)
 malus = Fruit(screen.x, screen.y, pygame.image.load('images/malus.png'))
@@ -34,8 +35,6 @@ if player.difficulty != 3:
     health.new_position(screen.x, screen.y)
 
 change_to = snake.direction
-score = Score()
-rules = Rules()
 
 while True:
 
@@ -51,9 +50,7 @@ while True:
             if event.key == pygame.K_RIGHT:
                 change_to = 'RIGHT'
 
-    # If two keys pressed simultaneously
-    # we don't want snake to move into two directions
-    # simultaneously
+    # Prevents the snake from moving in multiple directions if multiple keys are pressed
     if change_to == 'UP' and snake.direction != 'DOWN':
         snake.direction = 'UP'
     if change_to == 'DOWN' and snake.direction != 'UP':
@@ -73,9 +70,7 @@ while True:
     if snake.direction == 'RIGHT':
         snake.position[0] += 10
 
-    # Snake body growing mechanism
-    # if fruits and snakes collide then scores will be
-    # incremented by 10
+    # Different possibilities if fruits and snake collide
     snake.body.insert(0, list(snake.position))
     if snake.position[0] == bonus.position[0] and snake.position[1] == bonus.position[1]:
         score.point, snake.speed = bonus.get_bonus(score.point, player.difficulty, snake.speed)
@@ -124,7 +119,7 @@ while True:
         if snake.position[0] == block[0] and snake.position[1] == block[1]:
             rules.game_over(score.point, color.red, screen.x, screen.y, game_window)
 
-    # displaying score continuously
+    # displaying score and hps continuously
     score.show_score(1, color.white, 'times new roman', 20, score.point, game_window)
     player.show_hp(1, color.white, 'times new roman', 20, player.hp, game_window, screen.x, 0)
 
@@ -132,8 +127,6 @@ while True:
     malus.show_fruit(game_window, color.background)
     if player.difficulty != 3:
         health.show_fruit(game_window, color.background)
-
-    pygame.display.update()
 
     # Refresh game screen
     pygame.display.update()
