@@ -16,7 +16,7 @@
 6. [Bonus](#-bonus-)
  
 ## 🖥 Introduction 🖥
-This project consists in creating a snake game in Python. You can choose between multiple difficulties which will change the number of hps, the speed of the snake and the rewards. You can eat three different types of fruits. The health fruit (heart) gives you an hp. the bonus fruit (apple) gives you points. The malus fruit (poisoned apple) removes an hp.
+This project consists in creating a snake game in Python. You can choose between multiple difficulties which will change the number of hps, the speed of the snake and the rewards. You can eat three different types of fruits. The health fruit (heart) gives you an hp. the bonus fruit (apple) gives you points. The malus fruit (poisoned apple) removes an hp. Run the Game.py file to play.
 
 ### 🗓 Date 🗓
 ```
